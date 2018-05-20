@@ -8,8 +8,8 @@ Normally, I'd bother to reverse engineer the key generation (MD5-based in this c
 Normally the instructions that decide whether you get the "Wrong serial" message are:
 ```asm
 00002b41         test       al, al
-00002b43         jnz        0x2b6e                                 ;Here's the conditional jump based on the previous comparison
-00002b45         mov        dword [ss:esp+0x10], 0x0               ;The afore "JNZ" isn't executed so we go here and here's the Fail case
+00002b43         jnz        0x2b6e                                 ; Here's the conditional jump based on the previous comparison
+00002b45         mov        dword [ss:esp+0x10], 0x0               ; The afore "JNZ" isn't executed so we go here and here's the Fail case
 00002b4d         mov        dword [ss:esp+0xc], 0x0
 00002b55         mov        dword [ss:esp+0x8], 0x3054             ; @"Try again"
 00002b5d         mov        dword [ss:esp+0x4], 0x3064             ; @"The serial is not valid."
