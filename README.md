@@ -1,12 +1,14 @@
 # Unicorn-Crack-Me-Patcher
-A patcher written for the Unicorn Crack-Me
+
+A patcher wrote for the Unicorn Crack-Me
 
 I was bored and I decided to write a patcher for the Unicorn Crack-Me from https://reverse.put.as/wp-content/uploads/2010/05/2-Unicorn.zip
 
-Normally, I'd bother to reverse engineer the key generation (MD5-based in this case), but I found it less time consuming to simply patch the instructions that deal with the verification.
+Normally, I'd bother to reverse engineer the key generation (MD5-based in this case), but I found it less time-consuming to simply patch the instructions that deal with the verification.
 
-Normally the instructions that decide whether you get the "Wrong serial" message are:
+Normally the instructions that decide whether you get the "Wrong serial" message are in the "validate" method:
 ```asm
+...
 00002b41         test       al, al
 00002b43         jnz        0x2b6e                                 ; Here's the conditional jump based on the previous comparison
 00002b45         mov        dword [ss:esp+0x10], 0x0               ; The afore "JNZ" isn't executed so we go here and here's the Fail case
